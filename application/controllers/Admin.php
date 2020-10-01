@@ -11,7 +11,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function encrypt_password_callback($post_array, $primary_key = null) {
-		  $post_array['password'] = md5($post_array['password']);
+		  $post_array['password'] = password_hash($post_array['password'], PASSWORD_DEFAULT);
 		  return $post_array;
 	}
 

@@ -30,7 +30,11 @@
   <body>
 
     <div class="container">
-
+      <?php
+        if($this->session->flashdata('message')) {
+          echo $this->session->flashdata('message');
+        }
+      ?>
       <form class="form-signin" method="post" action="<?= site_url('login/cek'); ?>">
         <h2 class="form-signin-heading"><?php echo $judul; ?></h2>
       <?php if($this->session->flashdata('alert')){ ?>
@@ -47,7 +51,9 @@
 		<label></label>
         <button class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
       </form>
-
+      <div class="text-center">
+        <a href="<?= site_url('auth/register'); ?>">Register Account</a>
+      </div>
     </div> <!-- /container -->
 
 

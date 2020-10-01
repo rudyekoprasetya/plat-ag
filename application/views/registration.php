@@ -31,25 +31,22 @@
 
     <div class="container">
 
-      <form class="form-signin" method="post" action="<?= site_url('auth/signup'); ?>">
-        <h2 class="form-signin-heading"><?php echo $judul; ?></h2>
-      <?php if($this->session->flashdata('alert')){ ?>
-        <div class="alert alert-warning alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <?= $this->session->flashdata('alert'); ?>
-        </div>
-      <?php } ?>
+      <form class="form-signin" method="post" action="<?= site_url('auth/register'); ?>">
+        <h2 class="form-signin-heading"><?php echo $judul; ?></h2>     
+    <label for="nama" class="sr-only">Nama Lengkap</label>
+        <input type="text" id="nama" class="form-control" placeholder="Nama Anda" name="nama" value="<?= set_value('nama'); ?>">
+        <?= form_error('nama','<small class="text-danger">','</small>');?>
+    <label></label>
         <label for="email" class="sr-only">Email</label>
-        <input type="text" id="email" class="form-control" placeholder="Email" name="email" required>
+        <input type="text" id="email" class="form-control" placeholder="Email" name="email" value="<?= set_value('email'); ?>">
+        <?= form_error('email','<small class="text-danger">','</small>');?>
 		<label></label>
         <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password1" class="form-control" placeholder="Password" name="password1" required>
+        <input type="password" id="password1" class="form-control" placeholder="Password" name="password1">
+        <?= form_error('password1','<small class="text-danger">','</small>');?>
 		<label></label>
     <label for="password2" class="sr-only">Password</label>
-        <input type="password" id="password2" class="form-control" placeholder="Ulangi Password" name="password2" required>
-    <label></label>
-    <label for="nama" class="sr-only">Nama Lengkap</label>
-        <input type="text" id="nama" class="form-control" placeholder="Nama Anda" name="password" required>
+        <input type="password" id="password2" class="form-control" placeholder="Ulangi Password" name="password2">
     <label></label>
     <label for="gender" class="sr-only">Jenis Kelamin</label>
         <select id="gender" class="form-control" name="gender">
@@ -59,6 +56,9 @@
     <label></label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
       </form>
+      <div class="text-center">
+        <a href="<?= site_url('auth'); ?>">Already have account</a>
+      </div>
 
     </div> <!-- /container -->
 
