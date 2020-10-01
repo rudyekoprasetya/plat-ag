@@ -44,7 +44,7 @@ class Project extends CI_Controller {
       	<label>Jenis Mikrokontroller</label>
       	<input type="text" name="mikrokontroller" class="form-control" required="required" value="<?= $data->mikrokontroller; ?>">
       	<label>Deskripsi</label>
-      	<textarea class="form-control" name="deskripsi" required="required"><?= $data->id_project; ?></textarea>
+      	<textarea class="form-control" name="deskripsi" required="required"><?= $data->deskripsi; ?></textarea>
       	<label>Longitude</label>
       	<input type="text" name="longitude" class="form-control" value="<?= $data->longitude; ?>">
       	<label>Latitude</label>

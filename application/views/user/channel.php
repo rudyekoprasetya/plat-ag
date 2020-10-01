@@ -1,5 +1,5 @@
 <div class="panel-heading">
-	<h3 class="panel-title"><i class="fa fa-rocket"></i> <?php echo $judul; ?></h3>
+	<h3 class="panel-title"><i class="fa fa-hdd-o"></i> <?php echo $judul; ?></h3>
 </div>
 
 <div class="panel-body">
@@ -10,14 +10,16 @@
   				echo $this->session->flashdata('message');
   			}
   		?>
+      <a href="<?= site_url('project'); ?>" class="btn btn-big btn-info"><i class="fa fa-arrow-left"></i> Back</a>
   		<button class="btn btn-big btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Add</button>
   		<div class="table-responsive">
           <table class="table table-hover table-striped">
           	<thead>
           		<tr>
           			<th>No</th>
-          			<th>ID Project</th>
-          			<th>Mikrokontroller</th>
+          			<th>ID </th>
+          			<th>Channel</th>
+                <th>Tipe</th>
           			<th>Aktif</th>
           			<th></th>	
           		</tr>
@@ -25,18 +27,19 @@
           	<tbody>
 <?php 
 $no=0;
-foreach ($project->result() as $row) {
+foreach ($channel->result() as $row) {
 $no++;
 ?>
           		<tr>
           			<td><?= $no;?></td>
-          			<td><?= $row->project_id;?></td>
-          			<td><?= $row->mikrokontroller;?></td>
+          			<td><?= $row->channel_id;?></td>
+                <td><?= $row->channel_name;?></td>
+          			<td><?= $row->tipe;?></td>
           			<td><?= $row->is_aktif;?></td>
           			<td>
-          				<button class="btn btn-small btn-warning" data-toggle="modal" data-target="#myModalEdit" onclick="edit('<?= $row->id_project; ?>')" ><i class="fa fa-pencil"></i> </button> 
-          				<a href="<?= site_url('project/delete/'.$row->id_project); ?>" class="btn btn-small btn-danger" onclick="return confirm('Yakin Akan Hapus?')"><i class="fa fa-times"></i> </a> 
-          				<a class="btn btn-small btn-info" href="<?= site_url('channel/index/').base64_encode($row->project_id); ?>"><i class="fa fa-hdd-o"></i> </a> 
+          				<button class="btn btn-small btn-warning" data-toggle="modal" data-target="#myModalEdit" onclick="edit('<?= $row->id_channel; ?>')" ><i class="fa fa-pencil"></i> </button> 
+          				<a href="<?= site_url('channel/delete/').base64_encode($row->project_id).'/'.$row->id_channel; ?>" class="btn btn-small btn-danger" onclick="return confirm('Yakin Akan Hapus?')"><i class="fa fa-times"></i> </a>
+          				<a class="btn btn-small btn-primary" href="#"><i class="fa fa-tasks"></i> </a> 
           			</td>
           		</tr>
 <?php } ?>
@@ -56,15 +59,15 @@ $no++;
         <h4 class="modal-title" id="myModalInfoLabel">Tambah Data</h4>
       </div>
       <div class="modal-body">
-      <form method="POST" action="<?= site_url('project/add'); ?>">
-      	<label>Jenis Mikrokontroller</label>
-      	<input type="text" name="mikrokontroller" class="form-control" required="required">
-      	<label>Deskripsi</label>
-      	<textarea class="form-control" name="deskripsi" required="required"></textarea>
-      	<label>Longitude</label>
-      	<input type="text" name="longitude" class="form-control">
-      	<label>Latitude</label>
-      	<input type="text" name="latitude" class="form-control">
+      <form method="POST" action="<?= site_url('channel/add'); ?>">
+        <input type="hidden" name="project_id" value="<?= base64_decode($this->uri->segment(3)); ?>">
+      	<label>Nama Channel</label>
+      	<input type="text" name="channel_name" class="form-control" required="required">        
+        <label>Tipe</label>
+        <select class="form-control" name="tipe">
+          <option value="read">Read Data</option>
+          <option value="write">Write Data</option>
+        </select>
       	<label>Aktif</label>
       	<select class="form-control" name="is_aktif">
       		<option value="yes">yes</option>
@@ -102,8 +105,8 @@ $no++;
 	function edit(id) {
 		$.ajax({
 			type: 'POST',
-			url: '<?= site_url("project/edit") ?>',
-			data: 'id_project='+id,
+			url: '<?= site_url("channel/edit") ?>',
+			data: 'id_channel='+id,
 			success: function(data) {
 				$('#tempat_edit').html(data);
 			}

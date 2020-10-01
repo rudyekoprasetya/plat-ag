@@ -31,7 +31,7 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> User Menu <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="<?php echo site_url('user') ?>"><i class="fa fa-lock"></i> Ubah Profil</a></li>
+          <li><a href="<?php echo site_url('user/profil') ?>"><i class="fa fa-lock"></i> Profile</a></li>
           <li><a href="<?php echo site_url('auth/logout') ?>" onclick="return confirm('Yakin Mau Keluar?');"><i class="fa fa-sign-out"></i> Log Out</a></li>
         </ul>
     </li>
