@@ -30,26 +30,21 @@
   <body>
 
     <div class="container">
-      <?php
-        if($this->session->flashdata('message')) {
-          echo $this->session->flashdata('message');
-        }
-      ?>
-      <form class="form-signin" method="post" action="<?= site_url('login/cek'); ?>">
+      
+      <form class="form-signin" method="post" action="<?= site_url('auth'); ?>">
         <h2 class="form-signin-heading"><?php echo $judul; ?></h2>
-      <?php if($this->session->flashdata('alert')){ ?>
-        <div class="alert alert-warning alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <?= $this->session->flashdata('alert'); ?>
-        </div>
-      <?php } ?>
-        <label for="inputEmail" class="sr-only">Username</label>
-        <input type="text" class="form-control" placeholder="Username" name="username" required>
+        <?php
+          if($this->session->flashdata('message')) {
+            echo $this->session->flashdata('message');
+          }
+        ?>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="text" class="form-control" placeholder="Email" name="email" required id="inputEmail" value="<?= set_value('email'); ?>">
 		<label></label>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
 		<label></label>
-        <button class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
       </form>
       <div class="text-center">
         <a href="<?= site_url('auth/register'); ?>">Register Account</a>
