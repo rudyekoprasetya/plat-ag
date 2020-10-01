@@ -7,10 +7,23 @@ class User extends CI_Controller {
 		$this->load->model('Model_ci');
 	}
 
-	public function index() {
-		$data['judul']='Profil User';
-		$email=$this->session->userdata('email');
-		$data['user']=$this->Model_ci->get_where('tb_user',array('email'=>$email))->result();
-		$this->template->display('user/profil',$data);
+	public function profil() {
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_lenght[3]|matches[password2]');
+		$this->form_validation->set_rules('password2', 'Password', 'required|trim|min_lenght[3]|matches[password1]',[
+			'matches' => 'password dont match!',
+			'min_length' => 'password too short!'
+		]);
+		$this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		if($this->form_validation->run()==false) {
+			$data['judul']='Profil User';
+			$email=$this->session->userdata('email');
+			$data['user']=$this->Model_ci->get_where('tb_user',array('email'=>$email));
+			$this->template->display('user/profil',$data);
+		} else {
+
+		}
+		
 	}
 }

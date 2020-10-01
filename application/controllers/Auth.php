@@ -4,7 +4,6 @@ class Auth extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->library('form_validation');
 		$this->load->model('Model_ci');
 	}
 
@@ -28,7 +27,7 @@ class Auth extends CI_Controller {
 						'logged_in'=>true
 					);
 					$this->session->set_userdata($data);
-					redirect('user');
+					redirect('user/profil');
 				} else {
 					$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Wrong Password!</div>');
 					redirect('auth');

@@ -40,6 +40,7 @@
         ?>
         <label for="inputEmail" class="sr-only">Email</label>
         <input type="text" class="form-control" placeholder="Email" name="email" required id="inputEmail" value="<?= set_value('email'); ?>">
+        <?= form_error('email','<small class="text-danger">','</small>');?>
 		<label></label>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
