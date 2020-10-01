@@ -8,7 +8,7 @@
 	  <?php if($this->session->flashdata('message')){ ?>
 	      <?= $this->session->flashdata('message'); ?>
 	  <?php } ?>
- <form method="POST" action="<?= site_url('user/profil');?>">
+ <form method="POST" action="<?= site_url('user/profil');?>" enctype="multipart/form-data">
 <?php foreach ($user->result() as $row) { ?>
 	<center>
 		<img src="<?= base_url().'/assets/uploads/img/profil/'.$row->foto; ?>" alt="<?= $row->nama; ?>" class="img-responsive img-circle" height="150px" width="150px">
