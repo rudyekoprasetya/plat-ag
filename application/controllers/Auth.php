@@ -12,6 +12,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required|trim');
 		if($this->form_validation->run() == false) {			
 			$data['judul']='Login User';
+			$data['url']='index';
 			$this->load->view('login',$data);
 		} else {
 			$email=$this->input->post('email',true);
@@ -20,18 +21,24 @@ class Auth extends CI_Controller {
 			//jika email ada
 			if($cekEmail->num_rows()>0) {
 				$dataUser=$cekEmail->row();
-				//cek password
-				if(password_verify($password, $dataUser->password)) {
-					$data=array(
-						'id_user'=>$dataUser->id_user,
-						'logged_in'=>true
-					);
-					$this->session->set_userdata($data);
-					redirect('user/profil');
+				if($dataUser->is_aktif=='yes') {
+					//cek password
+					if(password_verify($password, $dataUser->password)) {
+						$data=array(
+							'id_user'=>$dataUser->id_user,
+							'akses'=> 'user',
+							'logged_in'=>true
+						);
+						$this->session->set_userdata($data);
+						redirect('user/profil');
+					} else {
+						$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Wrong Password!</div>');
+						redirect('auth');
+					}
 				} else {
-					$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Wrong Password!</div>');
-					redirect('auth');
-				}				
+					$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Your account not activated</div>');
+						redirect('auth');
+				}									
 			} else {
 				//jika email tidak ada
 				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Email not Registered</div>');
@@ -41,8 +48,44 @@ class Auth extends CI_Controller {
 	}
 
 	public function admin() {
-		$data['judul']='Login Administrator';
-		$this->load->view('login',$data);
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'required|trim');
+		if($this->form_validation->run()==false) {
+			$data['judul']='Login Administrator';
+			$data['url']='admin';
+			$this->load->view('login',$data);
+		} else {
+			$email=$this->input->post('email',true);
+			$password=$this->input->post('password',true);
+			$cekEmail=$this->Model_ci->get_where('tb_admin',array('email'=>$email));
+			//jika email ada
+			if($cekEmail->num_rows()>0) {
+				$dataUser=$cekEmail->row();
+				if($dataUser->is_aktif=='yes') {
+					//cek password
+					if(password_verify($password, $dataUser->password)) {
+						$data=array(
+							'id_user'=>$dataUser->id_user,
+							'akses'=> 'admin',
+							'logged_in'=>true
+						);
+						$this->session->set_userdata($data);
+						redirect('admin/administrator');
+					} else {
+						$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Wrong Password!</div>');
+						redirect('auth/admin');
+					}
+				} else {
+					$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Your Admin account not activated</div>');
+						redirect('auth/admin');
+				}									
+			} else {
+				//jika email tidak ada
+				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Email not Registered</div>');
+				redirect('auth/admin');
+			}
+
+		}
 	}
 
 	public function register() {
@@ -73,12 +116,12 @@ class Auth extends CI_Controller {
 			$this->Model_ci->insert('tb_user',$data);
 			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Congratulation, Please activate your account</div>');
 			redirect('auth');
-
 		}		
 	}
 
 	public function logout() {
 		$this->session->unset_userdata('id_user');
+		$this->session->unset_userdata('akses');
 		$this->session->unset_userdata('logged_in');
 		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Success Logout</div>');
 		redirect('auth');

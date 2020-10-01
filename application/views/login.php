@@ -31,7 +31,7 @@
 
     <div class="container">
       
-      <form class="form-signin" method="post" action="<?= site_url('auth'); ?>">
+      <form class="form-signin" method="post" action="<?= site_url('auth/'.$url); ?>">
         <h2 class="form-signin-heading"><?php echo $judul; ?></h2>
         <?php
           if($this->session->flashdata('message')) {
