@@ -18,8 +18,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 		if($this->form_validation->run()==false) {
 			$data['judul']='Profil User';
-			$email=$this->session->userdata('email');
-			$data['user']=$this->Model_ci->get_where('tb_user',array('email'=>$email));
+			$id_user=$this->session->userdata('id_user');
+			$data['user']=$this->Model_ci->get_where('tb_user',array('id_user'=>$id_user));
 			$this->template->display('user/profil',$data);
 		} else {
 

@@ -23,7 +23,7 @@ class Auth extends CI_Controller {
 				//cek password
 				if(password_verify($password, $dataUser->password)) {
 					$data=array(
-						'email'=>$email,
+						'id_user'=>$dataUser->id_user,
 						'logged_in'=>true
 					);
 					$this->session->set_userdata($data);
@@ -78,9 +78,8 @@ class Auth extends CI_Controller {
 	}
 
 	public function logout() {
-		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('id_user');
 		$this->session->unset_userdata('logged_in');
-		$this->session->sess_destroy();
 		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Success Logout</div>');
 		redirect('auth');
 
