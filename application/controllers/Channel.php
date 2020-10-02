@@ -40,6 +40,7 @@ class Channel extends CI_Controller {
 		 <form method="POST" action="<?= site_url('channel/update'); ?>">
         <input type="hidden" name="project_id" value="<?= $data->project_id; ?>">
         <input type="hidden" name="id_channel" value="<?= $data->id_channel; ?>">
+        <input type="hidden" name="channel_id" value="<?= $data->channel_id; ?>">
       	<label>Nama Channel</label>
       	<input type="text" name="channel_name" class="form-control" required="required" value="<?= $data->channel_name; ?>">        
         <label>Tipe</label>

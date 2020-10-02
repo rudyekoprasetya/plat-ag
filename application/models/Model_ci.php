@@ -55,4 +55,21 @@ class Model_ci extends CI_Model {
 		return $data = $this->db->get($table,$from,$to);
 	}
 
+	//fungsi tampil data
+	public function show_limit($channel_id,$limit=null) {
+		$query="SELECT value, created_at FROM tb_data WHERE channel_id='$channel_id' ORDER BY id DESC LIMIT 0, $limit ";
+		return $this->db->query($query);
+	}
+
+	public function show_time($channel_id,$start,$finish) {
+		$query="SELECT value, created_at FROM tb_data WHERE channel_id='$channel_id' AND DATE_FORMAT(created_at,'%Y-%m-%d')>='$start' AND DATE_FORMAT(created_at,'%Y-%m-%d')<='$finish'";
+		return $this->db->query($query);
+	}
+
+	//fungsi untuk ambil value terakhir untuk read data
+	public function getread($channel_id) {
+		$query="SELECT * FROM tb_data WHERE channel_id='$channel_id' ORDER BY id DESC LIMIT 0,1";
+		return $this->db->query($query);
+	}
+
 }
