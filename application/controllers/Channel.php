@@ -95,4 +95,12 @@ class Channel extends CI_Controller {
 
 	}
 
+	public function cleardata() {
+		$project_id=base64_decode($this->uri->segment(3));
+		$channel_id=$this->uri->segment(4);
+		$this->Model_ci->delete('tb_data',array('channel_id'=>$channel_id));
+		$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Data Cleared!</div>');
+		redirect('channel/index/'.base64_encode($project_id));
+	}
+
 }

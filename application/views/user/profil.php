@@ -13,6 +13,8 @@
 	<center>
 		<img src="<?= base_url().'/assets/uploads/img/profil/'.$row->foto; ?>" alt="<?= $row->nama; ?>" class="img-responsive img-circle" height="150px" width="150px">
 	</center>      
+	  	<label>API KEY</label>
+		<input type="text" class="form-control" value="<?= $row->api_key;?>" readonly>      
 	  	<label>Email</label>
 	  	<input type="hidden" name="id_user" value="<?= $row->id_user;?>">
 		<input type="text" class="form-control" id="email" name="email" value="<?= $row->email;?>" readonly>

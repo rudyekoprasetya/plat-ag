@@ -40,6 +40,7 @@ $no++;
           				<button class="btn btn-small btn-warning" data-toggle="modal" data-target="#myModalEdit" onclick="edit('<?= $row->id_channel; ?>')" ><i class="fa fa-pencil"></i> </button> 
           				<a href="<?= site_url('channel/delete/').base64_encode($row->project_id).'/'.$row->id_channel; ?>" class="btn btn-small btn-danger" onclick="return confirm('Yakin Akan Hapus?')"><i class="fa fa-times"></i> </a>
           				<button class="btn btn-small btn-primary" data-toggle="modal" data-target="#myModalData" onclick="showData('<?= $row->channel_id; ?>')"><i class="fa fa-tasks"></i> </button> 
+                  <a class="btn btn-small btn-default" href="<?= site_url('channel/cleardata/').base64_encode($row->project_id).'/'.$row->channel_id; ?>" onclick="return confirm('Yakin akan Hapus Semua Data Channel ini?')"><i class="fa fa-trash-o"></i> </a> 
           			</td>
           		</tr>
 <?php } ?>
