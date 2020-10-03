@@ -320,7 +320,7 @@ function showGraph() {
 					$('#tempat_data').html(data);
 				}
 			});
-		setInterval(showTable,1000);
+		// setInterval(showTable,1000);
 	}
 
 	function showInput() {
