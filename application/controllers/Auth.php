@@ -30,7 +30,7 @@ class Auth extends CI_Controller {
 							'logged_in'=>true
 						);
 						$this->session->set_userdata($data);
-						redirect('user/profil');
+						redirect('dashboard/user');
 					} else {
 						$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Wrong Password!</div>');
 						redirect('auth');
@@ -70,7 +70,7 @@ class Auth extends CI_Controller {
 							'logged_in'=>true
 						);
 						$this->session->set_userdata($data);
-						redirect('admin/administrator');
+						redirect('dashboard/admin');
 					} else {
 						$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Wrong Password!</div>');
 						redirect('auth/admin');

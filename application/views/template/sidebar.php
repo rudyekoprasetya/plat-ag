@@ -7,8 +7,8 @@
         <ul class="dropdown-menu">
           <li><a href="<?php echo site_url('admin/administrator') ?>"><i class="fa fa-users"></i> Admin</a></li>
           <li><a href="<?php echo site_url('admin/user') ?>"><i class="fa fa-user-md"></i> Pengguna</a></li>
-          <li><a href="<?php echo site_url('admin/project') ?>"><i class="fa fa-rocket"></i> Project</a></li>
-          <li><a href="<?php echo site_url('admin/channel') ?>"><i class="fa fa-tag"></i> Channel</a></li>
+          <li><a href="<?php echo site_url('admin/project') ?>"><i class="fa fa-rocket"></i> Projects</a></li>
+          <li><a href="<?php echo site_url('admin/channel') ?>"><i class="fa fa-tasks"></i> Channels</a></li>
         </ul>
     </li>
     <li class="dropdown">

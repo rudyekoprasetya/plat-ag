@@ -74,8 +74,7 @@ class Admin extends CI_Controller {
 		$crud->set_subject('Channel');
 		//relasi
 		$crud->set_relation('project_id','tb_project','project_id');
-		$crud->columns('channel_id','project_id','channel_name','tipe','is_aktif');
-		$crud->display_as('project_id','Project ID');
+		$crud->columns('channel_id','channel_name','tipe','is_aktif');
 		$crud->display_as('channel_id','Channel ID');
 		$crud->display_as('channel_name','Nama Channel');
 		$crud->display_as('tipe','Tipe');
