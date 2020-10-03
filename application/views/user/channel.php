@@ -17,8 +17,8 @@
           	<thead>
           		<tr>
           			<th>No</th>
-          			<th>ID </th>
-          			<th>Channel</th>
+          			<th>ID Channel</th>
+          			<th>Channel Name</th>
                 <th>Tipe</th>
           			<th>Aktif</th>
           			<th></th>	
@@ -39,7 +39,7 @@ $no++;
           			<td>
           				<button class="btn btn-small btn-warning" data-toggle="modal" data-target="#myModalEdit" onclick="edit('<?= $row->id_channel; ?>')" ><i class="fa fa-pencil"></i> </button> 
           				<a href="<?= site_url('channel/delete/').base64_encode($row->project_id).'/'.$row->id_channel; ?>" class="btn btn-small btn-danger" onclick="return confirm('Yakin Akan Hapus?')"><i class="fa fa-times"></i> </a>
-          				<a class="btn btn-small btn-primary" href="#"><i class="fa fa-tasks"></i> </a> 
+          				<button class="btn btn-small btn-primary" data-toggle="modal" data-target="#myModalData" onclick="showData('<?= $row->channel_id; ?>')"><i class="fa fa-tasks"></i> </button> 
           			</td>
           		</tr>
 <?php } ?>
@@ -101,6 +101,29 @@ $no++;
   </div>
 </div>
 <!--END Modal Edit -->
+
+<!-- Modal Data -->
+<div class="modal fade" id="myModalData" tabindex="-1" role="dialog" aria-labelledby="myModalInfoLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalInfoLabel">Data Channel</h4>
+      </div>
+      <div class="modal-body">
+        <pre id="tempat_json"></pre>
+      
+      </div>
+      <div class='modal-footer'>
+        <button type='submit' class='btn btn-success'><i class="fa fa-print"></i> Export</button>
+        <button type='button' class='btn btn-default' data-dismiss='modal'><i class="fa fa-times"></i> Close</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+<!-- Modal Data -->
+
 <script type="text/javascript">
 	function edit(id) {
 		$.ajax({
@@ -112,4 +135,16 @@ $no++;
 			}
 		});
 	}
+
+  function showData(id) {
+    $.ajax({
+      type: 'POST',
+      url: '<?= site_url("channel/show_data") ?>',
+      data: 'channel_id='+id,
+      dataType: 'json',
+      success: function(data) {
+        $('#tempat_json').html(JSON.stringify(data,undefined,2));
+      }
+    });
+  }
 </script>

@@ -84,4 +84,15 @@ class Channel extends CI_Controller {
 		redirect('channel/index/'.base64_encode($project_id));
 	}
 
+	public function show_data() {
+		$channel_id=$this->input->post('channel_id',true);
+		$data=$this->Model_ci->show_limit($channel_id,50)->result();
+		$dataCH=array(
+			'channel_id' => $channel_id,
+			'data' => $data
+		);
+		echo json_encode($dataCH);
+
+	}
+
 }
