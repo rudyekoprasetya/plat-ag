@@ -20,9 +20,14 @@ class Dashboard extends CI_Controller {
 		$id_user=$this->session->userdata('id_user');
 		$data['judul']="Dashboard User";
 		$project=$this->Model_ci->get_where('tb_project',array('id_user'=>$id_user));
-		$hasil=$project->row();
-		$data['project']=$project->num_rows();
-		$data['channel']=$this->Model_ci->get_where('tb_channel',array('project_id'=>$hasil->project_id))->num_rows();
+		if($project->num_rows() > 0) {			
+			$hasil=$project->row();
+			$data['project']=$project->num_rows();
+			$data['channel']=$this->Model_ci->get_where('tb_channel',array('project_id'=>$hasil->project_id))->num_rows();
+		} else {
+			$data['project']='0';
+			$data['channel']='0';
+		}
 		$this->template->display('user/home',$data);
 	}
 }
