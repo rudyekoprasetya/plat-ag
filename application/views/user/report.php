@@ -47,7 +47,7 @@
 		<script src="<?php echo base_url()."/assets/"; ?>js/jquery-1.10.2.js"></script>
 		<script>
 function showGraph() {	
-	$('#grafik').show();
+	$('#grafik').fadeIn(500);
 	$('#gauge').hide();
 	$('#data_table').hide();
 	$('#input_data').hide();
@@ -114,7 +114,7 @@ function showGraph() {
 <script>
 	function showGauge() {
 		$('#grafik').hide();
-		$('#gauge').show();
+		$('#gauge').fadeIn(500);
 		$('#data_table').hide();
 		$('#input_data').hide();
 		let channel_id=$('#channel_id').val();
@@ -308,7 +308,7 @@ function showGraph() {
 	function showTable() {
 		$('#grafik').hide();
 		$('#gauge').hide();
-		$('#data_table').show();
+		$('#data_table').fadeIn(500);
 		$('#input_data').hide();
 		let channel_id=$('#channel_id').val();
 			$.ajax({
@@ -327,7 +327,7 @@ function showGraph() {
 		$('#grafik').hide();
 		$('#gauge').hide();
 		$('#data_table').hide();
-		$('#input_data').show();
+		$('#input_data').fadeIn(500);
 	}
 
 	function sendData(val) {
