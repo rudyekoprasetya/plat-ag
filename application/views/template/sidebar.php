@@ -6,7 +6,8 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> Data Master <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="<?php echo site_url('admin/administrator') ?>"><i class="fa fa-users"></i> Admin</a></li>
-          <li><a href="<?php echo site_url('admin/user') ?>"><i class="fa fa-user-md"></i> Pengguna</a></li>
+          <li><a href="<?php echo site_url('admin/user') ?>"><i class="fa fa-user-md"></i> User</a></li>
+          <li><a href="<?php echo site_url('admin/aktifuser') ?>"><i class="fa fa-check"></i> Aktfikan User</a></li>
           <li><a href="<?php echo site_url('admin/project') ?>"><i class="fa fa-rocket"></i> Projects</a></li>
           <li><a href="<?php echo site_url('admin/channel') ?>"><i class="fa fa-tasks"></i> Channels</a></li>
         </ul>

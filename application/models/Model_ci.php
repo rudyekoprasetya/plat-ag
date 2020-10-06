@@ -72,4 +72,9 @@ class Model_ci extends CI_Model {
 		return $this->db->query($query);
 	}
 
+	public function getAktif() {
+		$query="SELECT * FROM tb_user ORDER BY id_user DESC";
+		return $this->db->query($query);
+	}
+
 }

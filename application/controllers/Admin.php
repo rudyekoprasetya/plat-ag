@@ -4,6 +4,7 @@ class Admin extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('Model_ci');
 		if(!$this->session->userdata('logged_in')) {redirect('auth','refresh');}//user harus login
 	}
 
@@ -82,4 +83,22 @@ class Admin extends CI_Controller {
 		$data['output']=$crud->render();
 		$this->_crud_output($data);
 	}
+
+	public function aktifuser() {
+		if($this->uri->segment(3)) {
+			$id_user=$this->uri->segment(3);
+			$status=$this->uri->segment(4);
+			$data=array('is_aktif'=>$status);
+			$update=$this->Model_ci->update('tb_user',$data,array('id_user'=>$id_user));
+			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">User status changed!</div>');
+			$data['judul']="Activate User";
+			$data['user']=$this->Model_ci->getAktif();
+			$this->template->display('admin/aktifuser',$data);
+		} else {			
+			$data['judul']="Activate User";
+			$data['user']=$this->Model_ci->getAktif();
+			$this->template->display('admin/aktifuser',$data);
+		}
+	}
+
 }
