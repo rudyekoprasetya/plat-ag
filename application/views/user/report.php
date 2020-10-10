@@ -173,7 +173,7 @@ function showGraph() {
 		    // the value axis
 		    yAxis: {
 		        min: 0,
-		        max: 5000,
+		        max: 2048,
 
 		        minorTickInterval: 'auto',
 		        minorTickWidth: 1,
@@ -195,15 +195,15 @@ function showGraph() {
 		        },
 		        plotBands: [{
 		            from: 0,
-		            to: 2000,
+		            to: 512,
 		            color: '#55BF3B' // green
 		        }, {
-		            from: 2000,
-		            to: 4000,
+		            from: 512,
+		            to: 1500,
 		            color: '#DDDF0D' // yellow
 		        }, {
-		            from: 4000,
-		            to: 5000,
+		            from: 1500,
+		            to: 2048,
 		            color: '#DF5353' // red
 		        }]
 		    },
@@ -230,7 +230,8 @@ function showGraph() {
 						success: function(data) {
 							// console.log(data);
 							let point = chart.series[0].points[0];	
-							point.update(data);			
+							point.update(data);	
+							$('#live_value').html(data);		
 						}
 					});
 		        }, 1000);
@@ -240,7 +241,15 @@ function showGraph() {
 </script>
  		<div id="gauge" style="margin-top: 20px; display: none;">
  			<h3>Gauge Report</h3>
- 			<div id="container_gauge"></div>
+ 			<div id="container_gauge" class="col-md-6"></div>
+ 			<div class="panel panel-default col-md-6">
+ 				<div class="panel-heading">
+ 					<h3 class="panel-title">Live Value</h3>
+ 				</div>
+ 				<div class="panel-body">
+ 					<h1 class="text-center" id="live_value" style="font-size: 170px">0.00</h1>
+ 				</div>
+ 			</div>
  			
  		</div>
 <!-- untuk gauge -->
